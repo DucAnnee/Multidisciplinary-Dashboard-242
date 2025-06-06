@@ -87,8 +87,8 @@ export default function Dashboard() {
             {/* 1.1 Controllers */}
             <Grid2
               item
-              size={{ xs: 4 }}
               sx={{
+                height: "35%",
                 width: "100%",
                 display: "flex",
                 flexDirection: "column",
@@ -108,6 +108,7 @@ export default function Dashboard() {
                   display: "flex",
                   flexDirection: "row",
                   gap: 2,
+                  flexGrow: 1,
                 }}
               >
                 <ControllerButton
@@ -125,7 +126,7 @@ export default function Dashboard() {
                 {/* 1.1.2 Light */}
                 <ControllerButton
                   label="Light"
-                  icon={<LightModeIcon />}
+                  icon={<LightModeIcon sx={{ color: "primary.dark" }} />}
                   onChangeController={() => {
                     setLightOn(!lightOn);
                   }}
@@ -175,7 +176,7 @@ export default function Dashboard() {
                     flexDirection: "column",
                     alignItems: "center",
                     justifyContent: "flex-start",
-                    backgroundColor: "primary.light",
+                    backgroundColor: "",
                     borderRadius: "12px",
                   }}
                 >
@@ -245,67 +246,47 @@ export default function Dashboard() {
             height: "100%",
           }}
         >
-          <Grid2
-            container
+          <Typography
+            variant="h5"
+            fontWeight={700}
+            color="primary.dark"
+            sx={{ mb: 1 }}
+          >
+            Sensor Data
+          </Typography>
+          <Box
             sx={{
-              height: "100%",
               display: "flex",
               flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
+              height: "100%",
+              gap: 2,
             }}
           >
-            <Grid2
-              container
-              sx={{
-                width: "100%",
-                height: "100%",
-              }}
-            >
-              <Typography
-                variant="h5"
-                fontWeight={700}
-                color="primary.dark"
-                sx={{ mb: 1 }}
-              >
-                Sensor Data
-              </Typography>
-              <Box
-                sx={{
-                  height: "94%",
-                  width: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 2,
-                }}
-              >
-                {/* 2.1 Temperature */}
-                <Grid2 item sx={{ width: "100%", flexGrow: 1 }}>
-                  <GraphDisplay
-                    title="Temperature"
-                    data={temperatureData}
-                    lineColor={"rgba(239, 161, 84, 1)"}
-                  />
-                </Grid2>
-                {/* 2.2 Humidity */}
-                <Grid2 item sx={{ width: "100%", flexGrow: 1 }}>
-                  <GraphDisplay
-                    title="Humidity"
-                    data={humidityData}
-                    lineColor={"rgba(162, 243, 255, 1)"}
-                  />
-                </Grid2>
-                {/* 2.3 Light */}
-                <Grid2 item sx={{ width: "100%", flexGrow: 1 }}>
-                  <GraphDisplay
-                    title="Light Intensity"
-                    data={lightData}
-                    lineColor={"rgba(255, 245, 171, 1)"}
-                  />
-                </Grid2>
-              </Box>
+            {/* 2.1 Temperature */}
+            <Grid2 item sx={{ width: "100%", flexGrow: 1 }}>
+              <GraphDisplay
+                title="Temperature"
+                data={temperatureData}
+                lineColor={"rgba(239, 161, 84, 1)"}
+              />
             </Grid2>
-          </Grid2>
+            {/* 2.2 Humidity */}
+            <Grid2 item sx={{ width: "100%", flexGrow: 1 }}>
+              <GraphDisplay
+                title="Humidity"
+                data={humidityData}
+                lineColor={"rgba(162, 243, 255, 1)"}
+              />
+            </Grid2>
+            {/* 2.3 Light */}
+            <Grid2 item sx={{ width: "100%", flexGrow: 1 }}>
+              <GraphDisplay
+                title="Light Intensity"
+                data={lightData}
+                lineColor={"rgba(255, 245, 171, 1)"}
+              />
+            </Grid2>
+          </Box>
         </Grid2>
       </Grid2>
     </Box>
@@ -328,8 +309,8 @@ const ControllerButton = ({
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "primary.light",
+        justifyContent: "space-around",
+        backgroundColor: "white",
         // transition: "transform 0.25s ease-out",
         // "&:hover": {
         //   transform: "translateY(-2px)",
@@ -344,7 +325,7 @@ const ControllerButton = ({
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#E9E9EA",
+          backgroundColor: "primary.lighter",
           padding: 2,
           margin: 2,
         }}
@@ -392,7 +373,7 @@ const GraphDisplay = ({ title, data, lineColor }) => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "primary.light",
+        backgroundColor: "white",
         borderRadius: "12px",
         padding: 1,
       }}
