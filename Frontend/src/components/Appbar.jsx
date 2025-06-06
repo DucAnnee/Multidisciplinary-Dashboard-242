@@ -1,48 +1,84 @@
-import { AppBar, Box, Toolbar } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
-import NotificationsNoneOutlined from "@mui/icons-material/NotificationsNoneOutlined";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import logo from "../assets/logo.png";
+import { AppBar, Box, Button, Typography } from "@mui/material";
+import HomeIcon from "@mui/icons-material/Home";
+import { useNavigate } from "react-router";
+import styles from "../styles/Appbar.module.css";
+
+const NAV_BUTTONS = [{ name: "Home", path: "/", icon: <HomeIcon /> }];
 
 export default function Appbar() {
+  const navigate = useNavigate();
+  const render_nav = () => {
+    return NAV_BUTTONS.map((page) => {
+      return (
+        <Button
+          key={page.path}
+          variant="text"
+          startIcon={page.icon}
+          onClick={() => navigate(page.path)}
+          sx={{
+            width: "100%",
+            justifyContent: "flex-start",
+            color: "white",
+            textTransform: "none",
+            justifyContent: "center",
+            fontSize: "1.2rem",
+            padding: "10px 20px",
+            // if the page is active, change the background color
+            backgroundColor:
+              window.location.pathname === page.path
+                ? "rgba(7, 59, 58, 0.6)"
+                : "transparent",
+            "&:hover": {
+              backgroundColor: "rgba(255, 255, 255, 0.3)",
+            },
+          }}
+        >
+          {page.name}
+        </Button>
+      );
+    });
+  };
+
   return (
     <AppBar
       position="sticky"
       sx={{
-        backgroundColor: "rgba(255,255,255,1.0)",
+        width: "12%",
+        height: "100vh",
+        backgroundColor: "primary.main",
         backdropFilter: "blur(10px)",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-start",
+        alignContent: "center",
+        alignItems: "center",
       }}
     >
-      <Toolbar
+      <Box
         sx={{
           display: "flex",
-          justifyContent: "space-between",
           alignItems: "center",
-          paddingX: 2,
+          justifyContent: "center",
+          height: "14%",
+          p: 1,
         }}
       >
-        {/* Logo */}
-        <Box
-          sx={{
-            width: "5vw",
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <Box
-            component="img"
-            src={logo}
-            alt="KAN E-Book LOGO"
-            sx={{
-              height: "10%",
-              cursor: "pointer",
-            }}
-            onClick={() => navigate("/")}
-          />
-        </Box>
-      </Toolbar>
+        <Typography fontSize="1.2rem" sx={{ color: "white" }}>
+          Bok Choy Farm
+        </Typography>
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "flex-start",
+          height: "40%",
+          width: "100%",
+        }}
+      >
+        {render_nav()}
+      </Box>
     </AppBar>
   );
 }
