@@ -20,8 +20,9 @@ const theme = createTheme({
       default: "#E3F0E5",
     },
     primary: {
-      main: "#08A045",
-      light: "#ABD1B5",
+      main: "#74C69D",
+      light: "#D8F3DC",
+      lighter: "#B7E4C7",
       dark: "#073B3A",
     },
     secondary: {
