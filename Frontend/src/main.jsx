@@ -13,17 +13,24 @@ import "@fontsource/be-vietnam-pro/500.css";
 import "@fontsource/be-vietnam-pro/700.css";
 
 import router from "./routers/router.jsx";
-import { AuthProvider } from "./contexts/AuthContext.jsx";
 
 const theme = createTheme({
   palette: {
+    background: {
+      default: "#E3F0E5",
+    },
     primary: {
-      main: "#1488DB",
-      light: "#BFE4ED",
-      dark: "#083657",
+      main: "#08A045",
+      light: "#ABD1B5",
+      dark: "#073B3A",
     },
     secondary: {
-      main: "#1488db",
+      main: "#596869",
+      light: "#ABD1B5",
+    },
+    controller: {
+      on: "#b6e7ec",
+      off: "#df7c41",
     },
   },
   typography: {
